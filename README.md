@@ -3,7 +3,7 @@ Result Type
 
 Result Type was created by, and is maintained by [Graham Campbell](https://github.com/GrahamCampbell), and is an implementation of the result type. Feel free to check out the [change log](CHANGELOG.md), [releases](https://github.com/GrahamCampbell/Result-Type/releases), [security policy](https://github.com/GrahamCampbell/Result-Type/security/policy), [license](LICENSE), [code of conduct](.github/CODE_OF_CONDUCT.md), and [contribution guidelines](.github/CONTRIBUTING.md).
 
-![Banner](https://user-images.githubusercontent.com/2829600/71477092-0f3c7780-27e0-11ea-95cb-22c5ff39ab29.png)
+![Banner](https://user-images.githubusercontent.com/2829600/77233209-f86aae80-6b9d-11ea-9cef-81501c9e858d.png)
 
 <p align="center">
 <a href="https://github.styleci.io/repos/249026522"><img src="https://github.styleci.io/repos/249026522/shield" alt="StyleCI Status"></img></a>
