@@ -21,8 +21,12 @@ jobs:
     - uses: actions/checkout@v2
     - name: Pull Docker Image
       run: docker pull registry.gitlab.com/grahamcampbell/php:${{ matrix.php }}
-    - name: Run Composer
+    - name: Run Composer PHP 7
+      run: docker run --rm -w /data -v ${{ github.workspace }}:/data --entrypoint composer registry.gitlab.com/grahamcampbell/php:${{ matrix.php }} install --no-suggest --prefer-dist -n -o
+      if: "matrix.php < 8"
+    - name: Run Composer PHP 8
       run: docker run --rm -w /data -v ${{ github.workspace }}:/data --entrypoint composer registry.gitlab.com/grahamcampbell/php:${{ matrix.php }} install --ignore-platform-reqs --no-suggest --prefer-dist -n -o
+      if: "matrix.php >= 8"
     - name: Run PHPUnit
       run: docker run --rm -w /data -v ${{ github.workspace }}:/data --entrypoint vendor/bin/phpunit registry.gitlab.com/grahamcampbell/php:${{ matrix.php }} --coverage-clover build/logs/clover.xml
     - name: Upload Coverage
