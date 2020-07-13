@@ -27,12 +27,6 @@
         }
     },
     "config": {
-        "preferred-install": "dist",
-        "platform-check": false
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.0-dev"
-        }
+        "preferred-install": "dist"
     }
 }
