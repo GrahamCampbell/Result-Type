@@ -3,34 +3,47 @@ name: Tests
 on:
   push:
   pull_request:
-  schedule:
-    - cron: '0 4 * * 1'
 
 jobs:
-  test:
-
-    runs-on: ubuntu-latest
+  tests:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-20.04
 
     strategy:
       matrix:
-        php: ["7.0", "7.1", "7.2", "7.3", "7.4", "8.0"]
-
-    name: PHP ${{ matrix.php }}
+        php: ['7.0', '7.1', '7.2', '7.3', '7.4', '8.0']
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Run Composer PHP 7
-      run: docker run --rm -w /data -v ${{ github.workspace }}:/data --entrypoint composer registry.gitlab.com/grahamcampbell/php:${{ matrix.php }}-base update -n -o
-      if: "matrix.php < 8"
-    - name: Run Composer PHP 8
-      run: docker run --rm -w /data -v ${{ github.workspace }}:/data --entrypoint composer registry.gitlab.com/grahamcampbell/php:${{ matrix.php }}-base update -n -o --ignore-platform-req=php
-      if: "matrix.php >= 8"
-    - name: Run PHPUnit PHP 7
-      run: docker run --rm -w /data -v ${{ github.workspace }}:/data --entrypoint vendor/bin/phpunit registry.gitlab.com/grahamcampbell/php:${{ matrix.php }} --coverage-clover build/logs/clover.xml
-      if: "matrix.php < 8"
-    - name: Run PHPUnit PHP 8
-      run: docker run --rm -w /data -v ${{ github.workspace }}:/data --entrypoint vendor/bin/phpunit registry.gitlab.com/grahamcampbell/php:${{ matrix.php }}-cli
-      if: "matrix.php >= 8"
-    - name: Upload Coverage PHP 7
-      run: docker run --rm -w /data -v ${{ github.workspace }}:/data --entrypoint ocular registry.gitlab.com/grahamcampbell/php:${{ matrix.php }}-base code-coverage:upload --format=php-clover build/logs/clover.xml
-      if: "matrix.php < 8"
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Setup Problem Matchers
+        run: echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
+      - name: Install PHP 7 Dependencies
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: composer update --no-interaction --no-progress
+        if: "matrix.php < 8"
+
+      - name: Install PHP 8 Dependencies
+        uses: nick-invision/retry@v1
+        with:
+          timeout_minutes: 5
+          max_attempts: 5
+          command: |
+            composer require "phpdocumentor/reflection-docblock:^5.2@dev" --no-update --no-interaction
+            composer update --no-interaction --no-progress --ignore-platform-req=php
+        if: "matrix.php >= 8"
+
+      - name: Execute PHPUnit
+        run: vendor/bin/phpunit
