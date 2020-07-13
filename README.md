@@ -21,7 +21,7 @@ Result Type requires [PHP](https://php.net) 7.0-8.0.
 To get the latest version, simply require the project using [Composer](https://getcomposer.org):
 
 ```bash
-$ composer require graham-campbell/result-type
+$ composer require graham-campbell/result-type:^1.0
 ```
 
 
