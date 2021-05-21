@@ -14,12 +14,13 @@ declare(strict_types=1);
 namespace GrahamCampbell\ResultType;
 
 use PhpOption\None;
+use PhpOption\Option;
 use PhpOption\Some;
 
 /**
- * @template T
- * @template E
- * @extends \GrahamCampbell\ResultType\Result<T,E>
+ * @template-covariant E
+ * @extends \GrahamCampbell\ResultType\Result<never,E>
+ * @immutable
  */
 final class Error extends Result
 {
@@ -47,73 +48,34 @@ final class Error extends Result
      *
      * @param F $value
      *
-     * @return \GrahamCampbell\ResultType\Result<T,F>
+     * @return \GrahamCampbell\ResultType\Result<never,F>
      */
-    public static function create($value)
+    public static function create($value): Result
     {
         return new self($value);
     }
 
-    /**
-     * Get the success option value.
-     *
-     * @return \PhpOption\Option<T>
-     */
-    public function success()
+    public function success(): Option
     {
         return None::create();
     }
 
-    /**
-     * Map over the success value.
-     *
-     * @template S
-     *
-     * @param callable(T):S $f
-     *
-     * @return \GrahamCampbell\ResultType\Result<S,E>
-     */
-    public function map(callable $f)
+    public function map(callable $f): Result
+    {
+        return $this;
+    }
+
+    public function flatMap(callable $f): Result
     {
         return self::create($this->value);
     }
 
-    /**
-     * Flat map over the success value.
-     *
-     * @template S
-     * @template F
-     *
-     * @param callable(T):\GrahamCampbell\ResultType\Result<S,F> $f
-     *
-     * @return \GrahamCampbell\ResultType\Result<S,F>
-     */
-    public function flatMap(callable $f)
-    {
-        /** @var \GrahamCampbell\ResultType\Result<S,F> */
-        return self::create($this->value);
-    }
-
-    /**
-     * Get the error option value.
-     *
-     * @return \PhpOption\Option<E>
-     */
-    public function error()
+    public function error(): Option
     {
         return Some::create($this->value);
     }
 
-    /**
-     * Map over the error value.
-     *
-     * @template F
-     *
-     * @param callable(E):F $f
-     *
-     * @return \GrahamCampbell\ResultType\Result<T,F>
-     */
-    public function mapError(callable $f)
+    public function mapError(callable $f): Result
     {
         return self::create($f($this->value));
     }
