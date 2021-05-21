@@ -13,57 +13,60 @@ declare(strict_types=1);
 
 namespace GrahamCampbell\ResultType;
 
+use PhpOption\Option;
+
 /**
- * @template T
- * @template E
+ * @template-covariant TSuccess
+ * @template-covariant TError
+ * @immutable
  */
 abstract class Result
 {
     /**
      * Get the success option value.
      *
-     * @return \PhpOption\Option<T>
+     * @return \PhpOption\Option<TSuccess>
      */
-    abstract public function success();
+    abstract public function success(): Option;
 
     /**
      * Map over the success value.
      *
-     * @template S
+     * @template TNewSuccess
      *
-     * @param callable(T):S $f
+     * @param callable(TSuccess):TNewSuccess $f
      *
-     * @return \GrahamCampbell\ResultType\Result<S,E>
+     * @return \GrahamCampbell\ResultType\Result<TNewSuccess,TError>
      */
-    abstract public function map(callable $f);
+    abstract public function map(callable $f): Result;
 
     /**
      * Flat map over the success value.
      *
-     * @template S
-     * @template F
+     * @template TNewSuccess
+     * @template TNewError
      *
-     * @param callable(T):\GrahamCampbell\ResultType\Result<S,F> $f
+     * @param callable(TSuccess):\GrahamCampbell\ResultType\Result<TNewSuccess,TNewError> $f
      *
-     * @return \GrahamCampbell\ResultType\Result<S,F>
+     * @return \GrahamCampbell\ResultType\Result<TNewSuccess,TError|TNewError>
      */
-    abstract public function flatMap(callable $f);
+    abstract public function flatMap(callable $f): Result;
 
     /**
      * Get the error option value.
      *
-     * @return \PhpOption\Option<E>
+     * @return \PhpOption\Option<TError>
      */
-    abstract public function error();
+    abstract public function error(): Option;
 
     /**
      * Map over the error value.
      *
-     * @template F
+     * @template TNewError
      *
-     * @param callable(E):F $f
+     * @param callable(TError):TNewError $f
      *
-     * @return \GrahamCampbell\ResultType\Result<T,F>
+     * @return \GrahamCampbell\ResultType\Result<TSuccess,TNewError>
      */
-    abstract public function mapError(callable $f);
+    abstract public function mapError(callable $f): Result;
 }
