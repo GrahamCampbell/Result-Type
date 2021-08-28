@@ -2,6 +2,11 @@ CHANGE LOG
 ==========
 
 
+## V1.0.2 (28/08/2021)
+
+* Added support for PHP 8.1
+
+
 ## V1.0.1 (13/04/2020)
 
 * Updated funding information
