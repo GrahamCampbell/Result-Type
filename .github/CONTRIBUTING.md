@@ -6,7 +6,7 @@ We accept contributions via pull requests on Github. Please review these guideli
 
 ## Guidelines
 
-* Please follow the [PSR-2 Coding Style Guide](https://www.php-fig.org/psr/psr-2/), enforced by [StyleCI](https://styleci.io/).
+* Please follow the [PSR-12 Coding Style Guide](https://www.php-fig.org/psr/psr-12/), enforced by [StyleCI](https://styleci.io/).
 * Ensure that the current tests pass, and if you've added something new, add the tests where relevant.
 * Send a coherent commit history, making sure each individual commit in your pull request is meaningful.
 * You may need to [rebase](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) to avoid merge conflicts.
@@ -27,5 +27,5 @@ Then run [PHPUnit](https://phpunit.de/):
 $ vendor/bin/phpunit
 ```
 
-* The tests will be automatically run by [Travis CI](https://travis-ci.org/) against pull requests.
+* The tests will be automatically run by [GitHub Actions](https://github.com/features/actions) against pull requests.
 * We also have [StyleCI](https://styleci.io/) setup to automatically fix any code style issues.
