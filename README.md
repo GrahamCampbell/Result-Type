@@ -6,10 +6,6 @@ Result Type was created by, and is maintained by [Graham Campbell](https://githu
 ![Banner](https://user-images.githubusercontent.com/2829600/77233209-f86aae80-6b9d-11ea-9cef-81501c9e858d.png)
 
 <p align="center">
-<a href="https://xscode.com/grahamcampbell/Result-Type"><img src="https://xscode.com/assets/promo-banner.svg" alt="Promo Banner"></img></a>
-</p>
-
-<p align="center">
 <a href="https://github.com/GrahamCampbell/Result-Type/actions?query=workflow%3ATests"><img src="https://img.shields.io/github/workflow/status/GrahamCampbell/Result-Type/Tests?label=Tests&style=flat-square" alt="Build Status"></img></a>
 <a href="https://github.styleci.io/repos/249026522"><img src="https://github.styleci.io/repos/249026522/shield" alt="StyleCI Status"></img></a>
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-brightgreen?style=flat-square" alt="Software License"></img></a>
