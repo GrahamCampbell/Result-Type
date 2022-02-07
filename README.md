@@ -16,7 +16,7 @@ Result Type was created by, and is maintained by [Graham Campbell](https://githu
 
 ## Installation
 
-Result Type requires [PHP](https://php.net) 7.0-8.1.
+Result Type requires [PHP](https://www.php.net/) 7.0-8.1.
 
 To get the latest version, simply require the project using [Composer](https://getcomposer.org):
 
