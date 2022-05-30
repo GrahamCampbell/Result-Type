@@ -16,9 +16,9 @@ Result Type was created by, and is maintained by [Graham Campbell](https://githu
 
 ## Installation
 
-Result Type requires [PHP](https://www.php.net/) 7.0-8.1.
+This version requires [PHP](https://www.php.net/) 7.0-8.1.
 
-To get the latest version, simply require the project using [Composer](https://getcomposer.org):
+To get the latest version, simply require the project using [Composer](https://getcomposer.org/):
 
 ```bash
 $ composer require "graham-campbell/result-type:^1.0"
