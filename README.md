@@ -16,12 +16,12 @@ Result Type was created by, and is maintained by [Graham Campbell](https://githu
 
 ## Installation
 
-This version requires [PHP](https://www.php.net/) 7.0-8.1.
+This version requires [PHP](https://www.php.net/) 7.2.5-8.2.
 
 To get the latest version, simply require the project using [Composer](https://getcomposer.org/):
 
 ```bash
-$ composer require "graham-campbell/result-type:^1.0"
+$ composer require "graham-campbell/result-type:^1.1"
 ```
 
 
