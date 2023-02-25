@@ -20,14 +20,14 @@ use RuntimeException;
 
 class ResultTest extends TestCase
 {
-    public function testSuccessValue()
+    public function testSuccessValue(): void
     {
         $this->assertTrue(Success::create('foo')->error()->isEmpty());
         $this->assertTrue(Success::create('foo')->success()->isDefined());
         $this->assertSame('foo', Success::create('foo')->success()->get());
     }
 
-    public function testSuccessMapping()
+    public function testSuccessMapping(): void
     {
         $r = Success::create('foo')
             ->map('strtoupper')
@@ -37,7 +37,7 @@ class ResultTest extends TestCase
         $this->assertSame('FOO', $r->success()->get());
     }
 
-    public function testSuccessFlatMappingSuccess()
+    public function testSuccessFlatMappingSuccess(): void
     {
         $r = Success::create('foo')->flatMap(function (string $data) {
             return Success::create('OH YES');
@@ -47,7 +47,7 @@ class ResultTest extends TestCase
         $this->assertSame('OH YES', $r->success()->get());
     }
 
-    public function testSuccessFlatMappingError()
+    public function testSuccessFlatMappingError(): void
     {
         $r = Success::create('foo')->flatMap(function (string $data) {
             return Error::create('OH NO');
@@ -57,7 +57,7 @@ class ResultTest extends TestCase
         $this->assertSame('OH NO', $r->error()->get());
     }
 
-    public function testSuccessFail()
+    public function testSuccessFail(): void
     {
         $result = Success::create('foo');
 
@@ -67,14 +67,14 @@ class ResultTest extends TestCase
         $result->error()->get();
     }
 
-    public function testErrorValue()
+    public function testErrorValue(): void
     {
         $this->assertTrue(Error::create('foo')->error()->isDefined());
         $this->assertTrue(Error::create('foo')->success()->isEmpty());
         $this->assertSame('foo', Error::create('foo')->error()->get());
     }
 
-    public function testErrorMapping()
+    public function testErrorMapping(): void
     {
         $r = Error::create('foo')
             ->map('strtoupper')
@@ -83,7 +83,7 @@ class ResultTest extends TestCase
         $this->assertSame('Foo', $r->error()->get());
     }
 
-    public function testErrorFail()
+    public function testErrorFail(): void
     {
         $result = Error::create('foo');
 
