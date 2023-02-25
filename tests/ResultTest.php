@@ -22,9 +22,9 @@ class ResultTest extends TestCase
 {
     public function testSuccessValue(): void
     {
-        $this->assertTrue(Success::create('foo')->error()->isEmpty());
-        $this->assertTrue(Success::create('foo')->success()->isDefined());
-        $this->assertSame('foo', Success::create('foo')->success()->get());
+        self::assertTrue(Success::create('foo')->error()->isEmpty());
+        self::assertTrue(Success::create('foo')->success()->isDefined());
+        self::assertSame('foo', Success::create('foo')->success()->get());
     }
 
     public function testSuccessMapping(): void
@@ -33,8 +33,8 @@ class ResultTest extends TestCase
             ->map('strtoupper')
             ->mapError('ucfirst');
 
-        $this->assertTrue($r->success()->isDefined());
-        $this->assertSame('FOO', $r->success()->get());
+        self::assertTrue($r->success()->isDefined());
+        self::assertSame('FOO', $r->success()->get());
     }
 
     public function testSuccessFlatMappingSuccess(): void
@@ -43,8 +43,8 @@ class ResultTest extends TestCase
             return Success::create('OH YES');
         });
 
-        $this->assertTrue($r->success()->isDefined());
-        $this->assertSame('OH YES', $r->success()->get());
+        self::assertTrue($r->success()->isDefined());
+        self::assertSame('OH YES', $r->success()->get());
     }
 
     public function testSuccessFlatMappingError(): void
@@ -53,8 +53,8 @@ class ResultTest extends TestCase
             return Error::create('OH NO');
         });
 
-        $this->assertTrue($r->error()->isDefined());
-        $this->assertSame('OH NO', $r->error()->get());
+        self::assertTrue($r->error()->isDefined());
+        self::assertSame('OH NO', $r->error()->get());
     }
 
     public function testSuccessFail(): void
@@ -69,9 +69,9 @@ class ResultTest extends TestCase
 
     public function testErrorValue(): void
     {
-        $this->assertTrue(Error::create('foo')->error()->isDefined());
-        $this->assertTrue(Error::create('foo')->success()->isEmpty());
-        $this->assertSame('foo', Error::create('foo')->error()->get());
+        self::assertTrue(Error::create('foo')->error()->isDefined());
+        self::assertTrue(Error::create('foo')->success()->isEmpty());
+        self::assertSame('foo', Error::create('foo')->error()->get());
     }
 
     public function testErrorMapping(): void
@@ -80,7 +80,7 @@ class ResultTest extends TestCase
             ->map('strtoupper')
             ->mapError('ucfirst');
 
-        $this->assertSame('Foo', $r->error()->get());
+        self::assertSame('Foo', $r->error()->get());
     }
 
     public function testErrorFail(): void
