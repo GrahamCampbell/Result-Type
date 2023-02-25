@@ -39,7 +39,7 @@ class ResultTest extends TestCase
 
     public function testSuccessFlatMappingSuccess(): void
     {
-        $r = Success::create('foo')->flatMap(function (string $data) {
+        $r = Success::create('foo')->flatMap(function (string $data): Success {
             return Success::create('OH YES');
         });
 
@@ -49,7 +49,7 @@ class ResultTest extends TestCase
 
     public function testSuccessFlatMappingError(): void
     {
-        $r = Success::create('foo')->flatMap(function (string $data) {
+        $r = Success::create('foo')->flatMap(function (string $data): Error {
             return Error::create('OH NO');
         });
 
