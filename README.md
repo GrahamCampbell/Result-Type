@@ -16,7 +16,7 @@ Result Type was created by, and is maintained by [Graham Campbell](https://githu
 
 ## Installation
 
-This version requires [PHP](https://www.php.net/) 7.2.5-8.2.
+This version requires [PHP](https://www.php.net/) 7.2.5-8.3.
 
 To get the latest version, simply require the project using [Composer](https://getcomposer.org/):
 
