@@ -2,6 +2,13 @@ CHANGE LOG
 ==========
 
 
+## V1.2.0 (24/08/2026)
+
+* `Result` is now covariant in its value and error types
+* Improved the types of the factory and transformation methods
+* Increased the minimum phpoption version to 1.10
+
+
 ## V1.1.5 (23/08/2026)
 
 * Added support for PHP 8.6
