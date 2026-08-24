@@ -42,7 +42,7 @@ final class Success extends Result
     }
 
     /**
-     * Create a new error value.
+     * Create a new success value.
      *
      * @template S
      *
